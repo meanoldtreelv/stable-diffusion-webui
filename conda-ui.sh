@@ -141,7 +141,7 @@ printf "\n%s\n" "${delimiter}"
 printf "Create and activate python venv"
 printf "\n%s\n" "${delimiter}"
 cd "${install_dir}"/"${clone_dir}"/ || { printf "\e[1m\e[31mERROR: Can't cd to %s/%s/, aborting...\e[0m" "${install_dir}" "${clone_dir}"; exit 1; }
-conda activate $PWD/a1111
+~/miniconda3/bin/conda activate $PWD/a1111
 ## adding conda activate
 
 #if [[ ! -d "${conda_dir}" ]]
