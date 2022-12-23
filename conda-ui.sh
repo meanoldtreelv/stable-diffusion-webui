@@ -51,12 +51,6 @@ fi
 #    venv_dir="venv"
 #fi
 ##
-## Adding conda env
-if [[ -z "${conda_dir}" ]]
-then
-    conda_dir="/sandbox/sd-conda"
-fi
-##
 if [[ -z "${LAUNCH_SCRIPT}" ]]
 then
     LAUNCH_SCRIPT="launch.py"
@@ -147,6 +141,7 @@ printf "\n%s\n" "${delimiter}"
 printf "Create and activate python venv"
 printf "\n%s\n" "${delimiter}"
 cd "${install_dir}"/"${clone_dir}"/ || { printf "\e[1m\e[31mERROR: Can't cd to %s/%s/, aborting...\e[0m" "${install_dir}" "${clone_dir}"; exit 1; }
+conda activate $PWD/a1111
 ## adding conda activate
 
 #if [[ ! -d "${conda_dir}" ]]
@@ -155,15 +150,15 @@ cd "${install_dir}"/"${clone_dir}"/ || { printf "\e[1m\e[31mERROR: Can't cd to %
 #    first_launch=1
 #fi
 # shellcheck source=/dev/null
-if [[ -f "${conda_dir}"/bin/activate ]]
-then
-    conda activate "${conda_dir}"
-else
-    printf "\n%s\n" "${delimiter}"
-    printf "\e[1m\e[31mERROR: Cannot activate conda environment, aborting...\e[0m"
-    printf "\n%s\n" "${delimiter}"
-    exit 1
-fi
+#if [[ -f "${conda_dir}"/bin/activate ]]
+#then
+#    conda activate "${conda_dir}"
+#else
+#    printf "\n%s\n" "${delimiter}"
+#    printf "\e[1m\e[31mERROR: Cannot activate conda environment, aborting...\e[0m"
+#    printf "\n%s\n" "${delimiter}"
+#    exit 1
+#fi
 
 if [[ ! -z "${ACCELERATE}" ]] && [ ${ACCELERATE}="True" ] && [ -x "$(command -v accelerate)" ]
 then
